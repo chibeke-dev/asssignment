@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array</title>
+  </head>
+  <style>
+    * body {
+      background: lightblue;
+    }
+    div#content {
+      padding: 20px;
+      margin-left: 30%;
+      margin-top: 20px;
+    }
+    img {
+      width: 160px;
+      height: 200px;
+      border-radius: 50%;
+    }
+    strong {
+      color: white;
+      margin: 10px;
+    }
+    button {
+      width: 15%;
+      padding: 10px;
+      background: #fff;
+      border-radius: 50px;
+      outline: none;
+    }
+    .edit:hover {
+      color: #fff;
+      background-color: green;
+    }
+    .delete:hover {
+      color: #fff;
+      background-color: red;
+    }
+    .new-user {
+      background: blue;
+      color: #fff;
+      margin-left: 500px;
+    }
+    .new-user:hover {
+      color: black;
+      background: #fff;
+    }
+  </style>
+  <div>
+    <button onClick="addUser()" class="new-user">Add new user</button>
+  </div>
+  <div id="content"></div>
+  <body>
+    <script>
+      //Array of profile
+      let users = [
+        {
+          fullName: "Chidinma Nwabekee",
+          email: "chidi@tiidelab.com",
+          phone: "09080950067",
+          pic: "1.jpg",
+        },
+        {
+          fullName: "Akan Asanga",
+          email: "akan@tiidelab.com",
+          phone: "081097777654",
+          pic: "2.jpg",
+        },
+        {
+          fullName: "Team members",
+          email: "team@tiidelab.com",
+          phone: "070879990665",
+          pic: "3.jpg",
+        },
+      ];
+      displayProfile();
+      // Display profile function
+      function displayProfile() {
+        content = "";
+        for (i = 0; i < users.length; i++) {
+          if (users != null || users != undefined) {
+            content += `<div>
+                <img src="${users[i].pic}" style="max-height: 100px;">
+                <div>
+                <strong>Full Name</strong> : ${users[i].fullName}<br>
+                <strong>Email</strong> : ${users[i].email}<br>
+                <strong>Phone</strong> : ${users[i].phone}<br>
+                <button  onClick="deleteUser(${i})" class="delete" >Delete</button>
+                <button  onClick="editUser(${i})" class="edit" >Edit</button>
+                </div>
+      ​
+            </div> <hr>`;
+          }
+        }
+        document.getElementById("content").innerHTML = content;
+      }
+      displayProfile();
+      // Add user function
+
+      function addUser() {
+        let newUser = {
+          fullName: prompt("Enter your name"),
+          email: prompt("Enter your email"),
+          phone: prompt("Enter your phone number"),
+          pic: prompt("Upload your profile pics"),
+        };
+        users.push(newUser);
+        displayProfile();
+      }
+      // Edit user function
+      function editUser(id) {
+        let newProfile = {
+          fullName: prompt("Enter your name"),
+          email: prompt("Enter your email"),
+          phone: prompt("Enter your phone number"),
+          pic: prompt("Upload your profile pics"),
+        };
+        users[id] = newProfile;
+        displayProfile();
+      }
+
+      // Delete user function
+      function deleteUser(id) {
+        if (confirm(`Are you sure you want to delete ${users[id].fullName}?`)) {
+          users.splice(id, 1);
+        }
+        displayProfile();
+      }
+    </script>
+  </body>
+</html>
